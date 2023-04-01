@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const port = process.env.PORT || 3000;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sampledataRouter = require('./routes/sampledata');
@@ -30,7 +30,9 @@ app.use('/website', websiteRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
